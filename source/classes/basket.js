@@ -7,11 +7,48 @@ export class Basket {
 
     total() {
         let total = 0.0
-        this.items.forEach((item) => total += item.price)
-        return total
+        this.items.forEach((item) => total += this.calculateOffers(this.priceRules, item))
+        return Number(total.toFixed(2));
     }
 
     add(item){
-        this.items.push(item)
+        if (this.items.includes(item)){
+            let index = this.items.indexOf(item)
+            this.items[index].quantity ++;
+        } else { 
+            item.quantity = 1
+            this.items.push(item)
+        }
+    }
+
+    calculateOffers(priceRules, item){
+        // TODO: Logic required to determine which offer takes precedence
+        let price = item.price
+        let priceRule = priceRules[item.id] || {}
+
+        if (priceRule.buyOneGetOneFree){
+            let total = 0
+            while (item.quantity > 0){
+                if (item.quantity % 2 === 0) {
+                    total += item.price
+                    item.quantity=item.quantity - 2
+                } else {
+                    total += item.price
+                    item.quantity--
+                }
+            }
+            price = total
+            
+        }
+        else if (priceRule.buyInBulk){
+            if (item.quantity >= 3) {
+                price = (4.50 * item.quantity)
+            } else {
+                price = price * item.quantity
+            }
+        } else {
+            price = price * item.quantity
+        }
+        return price
     }
 }

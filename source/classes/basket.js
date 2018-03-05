@@ -24,6 +24,7 @@ export class Basket {
     calculateOffers(priceRules, item){
         // TODO: Logic required to determine which offer takes precedence
         let price = item.price
+        let quantity = item.quantity
         let priceRule = priceRules[item.id] || {}
 
         if (priceRule.buyOneGetOneFree){
@@ -37,6 +38,7 @@ export class Basket {
                     item.quantity--
                 }
             }
+            item.quantity = quantity
             price = total
             
         }

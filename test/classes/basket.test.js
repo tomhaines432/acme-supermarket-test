@@ -13,7 +13,7 @@ const items = [
     },
     {
         price: 7.89,
-        bulkPrice: 4.5,
+        bulkPrice: 4.50,
         id: "SR1",
         name: "Strawberries"
     },
@@ -50,18 +50,13 @@ describe("Basket", () => {
 
         it("should return the total value of £0.00 for a new basket instance", () => {
             const basket = new Basket();
-            assert(basket.total() === 0.0);
+            assert(basket.total() === 0.00);
         });
 
         it("should add a new item to the basket", () => {
             const basket = new Basket();
 
-            const newItem = {
-                price: 1.23,
-                id: "productId1"
-            };
-
-            basket.add(newItem);
+            basket.add(items[0]);
 
             assert(basket.items.length === 1);
         });
@@ -135,7 +130,7 @@ describe("Basket", () => {
             basket.add(items[1]);
             basket.add(items[1]);
             basket.add(items[1]);
-            assert(basket.total() === 13.5);
+            assert(basket.total() === 13.50);
         });
 
         it("should reduce the price when there are more than 3 items", () => {
@@ -145,7 +140,7 @@ describe("Basket", () => {
             basket.add(items[1]);
             basket.add(items[1]);
             basket.add(items[1]);
-            assert(basket.total() === 22.5);
+            assert(basket.total() === 22.50);
         });
 
         it("should not reduce the price when there are less than 3 items", () => {

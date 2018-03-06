@@ -7,6 +7,33 @@ Create a solution for the ACME Supermarket problem.
 *   Run `yarn` to install dependencies
 *   Run `yarn test` to run the unit tests
 
+## API
+
+In order to create an instance of the basket object, use: 
+`let basket = new Basket(pricingRules)`
+
+`pricingRules` should be object in the following form:
+    
+    [productId]:{
+        buyOneGetOneFree: [boolean],
+        buyInBulk: [boolean]
+    }
+
+To add an item to the basket, call the `add` method on the basket instance.
+
+    let basket = new Basket(pricingRules)
+    basket.add(item)
+
+`item` should be an object in the following form:
+    
+    {
+        price: 1.23,
+        bulkPrice: 1.15,
+        id: "FR1",
+        name: "Fruit Tea"
+    }
+
+
 ## Description of the problem
 
 ACME's quest for global domination has prompted us to open a supermarket – we sell only three products:

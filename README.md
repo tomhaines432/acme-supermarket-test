@@ -2,6 +2,11 @@
 
 Create a solution for the ACME Supermarket problem.
 
+## Usage
+
+*   Run `yarn` to install dependencies
+*   Run `yarn test` to run the unit tests
+
 ## Description of the problem
 
 ACME's quest for global domination has prompted us to open a supermarket – we sell only three products:
